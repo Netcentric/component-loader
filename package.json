@@ -15,6 +15,12 @@
     "loader",
     "vanilla"
   ],
+  "scripts": {
+    "test": "jest"
+  },
   "author": "Netcentric",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
