@@ -24,9 +24,7 @@
   "author": "Netcentric",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0"
-  },
-  "dependencies": {
+    "jest": "^23.6.0",
     "eslint-config-airbnb-base": "^13.1.0"
   }
 }
