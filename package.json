@@ -2,9 +2,9 @@
   "name": "component-loader",
   "version": "0.1.0",
   "description": "This is our standard to load simple components for plain javascript projects ",
-  "main": "index.js",
+  "main": "./lib",
   "scripts": {
-    "test": "npm run tests"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,12 +15,18 @@
     "loader",
     "vanilla"
   ],
-  "scripts": {
-    "test": "jest"
-  },
+  "browserslist": [
+    "last 2 versions",
+    "Explorer >= 11",
+    "iOS >= 9",
+    "Android >= 5"
+  ],
   "author": "Netcentric",
   "license": "ISC",
   "devDependencies": {
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "stylelint-config-standard": "^18.2.0"
   }
 }
