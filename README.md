@@ -30,8 +30,8 @@
 
 ```javascript
 import {
-  loaderObserve,
-  loaderRun,
+  observe as loaderObserve,
+  run as loaderRun,
 } from '@nc/component-loader';
 
 // do a first run
@@ -44,7 +44,7 @@ loaderObserve();
 #### at the component `.entry.` file you should register your component
 
 ```javascript
-import { loaderRegister } from '@nc/component-loader';
+import { register as loaderRegister } from '@nc/component-loader';
 import { text } from './text.component';
 
 // register your component to be loaded
@@ -98,7 +98,7 @@ You can register individual components
 
 ```javascript
 
-import { loaderRegister } from @nc/component-loader
+import { register as loaderRegister } from @nc/component-loader
 import { title } from 'components/title'
 import { text } from 'components/text'
 
@@ -110,7 +110,7 @@ Or you can register several components based on proper named exports
 
 ```javascript
 
-import { loaderRegister } from @nc/component-loader
+import { register as loaderRegister } from @nc/component-loader
 import * as components from 'components'
 import { text } from 'components/text'
 
@@ -127,8 +127,8 @@ This will run the loader on previous register components
 ```javascript
 
 import {
-  loaderRegister,
-  loaderRun
+  register as loaderRegister,
+  run as loaderRun
 } from @nc/component-loader
 
 // eg components
@@ -146,8 +146,8 @@ Or you can register several components based on proper named exports
 ```javascript
 
 import {
-  loaderRegister,
-  loaderRun
+  register as loaderRegister,
+  run as loaderRun
 } from @nc/component-loader
 
 // eg components
