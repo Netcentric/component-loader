@@ -48,18 +48,16 @@ import { register as loaderRegister } from '@nc/component-loader';
 import { text } from './text.component';
 
 // register your component to be loaded
-loaderRegister(text);
+loaderRegister({ text });
 
 ```
 
-
-
 ## API and examples
 
-This version is setup to use standalone functions to improve its use and allow better tree shaking and use of its parts.
+This version uses standalone functions to allow tree shaking and to only use necessary parts.
 
 
-### loaderComponents
+### components
 
 Here is just a constant to store the available constructors (functions or classes) of components.
 We store it on its own file so it can be imported into separeted files and witout having to import the other components logic.
@@ -68,20 +66,20 @@ If you want to access all components constructors you can just import it in any 
 
 ```javascript
 
-import { loaderComponents } from @nc/component-loader
+import { components as loaderComponents } from @nc/component-loader
 
 ```
 
-### loaderInstances
+### instances
 
-This constant will store all instances of components separated by [className][instanceId]
+This object will store all instances of components separated by [className][instanceId].
 We store it on its own file so it can be imported into separeted files and witout having to import the other components logic.
 
-If you want to access all Intances of components you can just import it in any file like:
+If you want to access all the intances of components you can just import it in any file like:
 
 ```javascript
 
-import { loaderInstances } from @nc/component-loader
+import { instances as loaderInstances } from @nc/component-loader
 
 const howManyTitles = loaderInstances.title.length;
 
@@ -91,7 +89,7 @@ const mytitle = getTitleByUUID('a8c405b5-1928-46ed-afa1-5a0a3f4dde6c');
 
 ```
 
-### loaderRegister
+### register
 
 This method will register componets constructor in loaderComponents
 You can register individual components
@@ -120,7 +118,7 @@ loaderRegister({ components });
 
 ```
 
-### loaderRun
+### run
 
 This will run the loader on previous register components
 
@@ -160,5 +158,3 @@ const main = document.querySelector('main');
 loaderRun(main, 'data-component');
 
 ```
-
-
