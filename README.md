@@ -79,7 +79,7 @@ If you want to access all the intances of components you can just import it in a
 
 ```javascript
 
-import { instances as loaderInstances } from @nc/component-loader
+import { instances as loaderInstances } from @nc/component-loader;
 
 const howManyTitles = loaderInstances.title.length;
 
@@ -97,8 +97,8 @@ You can register individual components
 ```javascript
 
 import { register as loaderRegister } from @nc/component-loader
-import { title } from 'components/title'
-import { text } from 'components/text'
+import { title } from 'components/title';
+import { text } from 'components/text';
 
 // Add 2 components named title, and text
 loaderRegister({ title, text });
@@ -109,8 +109,7 @@ Or you can register several components based on proper named exports
 ```javascript
 
 import { register as loaderRegister } from @nc/component-loader
-import * as components from 'components'
-import { text } from 'components/text'
+import * as components from 'components';
 
 // register all components exported as proper named exports on components/index.js
 
@@ -127,11 +126,11 @@ This will run the loader on previous register components
 import {
   register as loaderRegister,
   run as loaderRun
-} from @nc/component-loader
+} from @nc/component-loader;
 
 // eg components
-import { title } from 'components/title'
-import { text } from 'components/text'
+import { title } from 'components/title';
+import { text } from 'components/text';
 
 // Add 2 components named title, and text
 loaderRegister({ title, text });
@@ -146,10 +145,10 @@ Or you can register several components based on proper named exports
 import {
   register as loaderRegister,
   run as loaderRun
-} from @nc/component-loader
+} from @nc/component-loader;
 
 // eg components
-import * as components from 'components'
+import * as components from 'components';
 
 // register all components exported as proper named exports on components/index.js
 loaderRegister({ components });
