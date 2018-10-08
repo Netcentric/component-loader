@@ -14,6 +14,46 @@
 | Iteration over nodes instead of components        | Nodes define with components to init  |
 
 
+# how to use it on your project
+
+
+### Installation
+
+1 - Make sure you have your ~/.npmrc file setup (see ["How can I install an NPM-NC package globally for my local user's account?"](https://projects.netcentric.biz/wiki/display/FRONTEND/Netcentric%27s+NPM+Repository+-+NPM-NC) )
+
+2 - Run ```npm install --save @nc/component-loader```
+
+
+### A Regular project setup
+
+#### At your main entry file you should run it
+
+```javascript
+import {
+  loaderObserve,
+  loaderRun,
+} from '@nc/component-loader';
+
+// do a first run
+loaderRun();
+// observe if new components are added to the DOM after that.
+loaderObserve();
+
+```
+
+#### at the component `.entry.` file you should register your component
+
+```javascript
+import { loaderRegister } from '@nc/component-loader';
+import { text } from './text.component';
+
+// register your component to be loaded
+loaderRegister(text);
+
+```
+
+
+
 ## API and examples
 
 This version is setup to use standalone functions to improve its use and allow better tree shaking and use of its parts.
@@ -28,7 +68,7 @@ If you want to access all components constructors you can just import it in any 
 
 ```javascript
 
-import { loaderComponents } from @nc/component-loader/loaderComponents
+import { loaderComponents } from @nc/component-loader
 
 ```
 
@@ -41,7 +81,7 @@ If you want to access all Intances of components you can just import it in any f
 
 ```javascript
 
-import { loaderInstances } from @nc/component-loader/loaderInstances
+import { loaderInstances } from @nc/component-loader
 
 const howManyTitles = loaderInstances.title.length;
 
@@ -58,7 +98,7 @@ You can register individual components
 
 ```javascript
 
-import { loaderRegister } from @nc/component-loader/loaderRegister
+import { loaderRegister } from @nc/component-loader
 import { title } from 'components/title'
 import { text } from 'components/text'
 
@@ -70,7 +110,7 @@ Or you can register several components based on proper named exports
 
 ```javascript
 
-import { loaderRegister } from @nc/component-loader/loaderInstances
+import { loaderRegister } from @nc/component-loader
 import * as components from 'components'
 import { text } from 'components/text'
 
@@ -86,8 +126,11 @@ This will run the loader on previous register components
 
 ```javascript
 
-import { loaderRegister } from @nc/component-loader/loaderRegister
-import { loaderRun } from @nc/component-loader/loaderRun
+import {
+  loaderRegister,
+  loaderRun
+} from @nc/component-loader
+
 // eg components
 import { title } from 'components/title'
 import { text } from 'components/text'
@@ -102,8 +145,11 @@ Or you can register several components based on proper named exports
 
 ```javascript
 
-import { loaderRegister } from @nc/component-loader/loaderRegister
-import { loaderRun } from @nc/component-loader/loaderRun
+import {
+  loaderRegister,
+  loaderRun
+} from @nc/component-loader
+
 // eg components
 import * as components from 'components'
 

@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "extends": "./node_modules/eslint-config-airbnb-base/index.js",
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "rules": {
+    "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": "off",
+    "consistent-return": 0,
+    "max-len": 0,
+    "global-require": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "import/no-named-as-default": 0,
+    "import/prefer-default-export": 0,
+    "func-names": "off",
+    "no-console": "off",
+    "prefer-destructuring": 0,
+    "implicit-arrow-linebreak": 0
+  }
+}
