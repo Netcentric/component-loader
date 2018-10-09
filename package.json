@@ -6,6 +6,9 @@
   "scripts": {
     "test": "jest"
   },
+  "publishConfig": {
+    "registry": "http://repo-npm.int.netcentric.biz/repository/npm-nc/"
+  },
   "repository": {
     "type": "git",
     "url": "ssh://git@source.int.netcentric.biz:7999/npm-nc/component-loader.git"
