@@ -2,7 +2,7 @@
   "name": "@nc/component-loader",
   "version": "0.1.2",
   "description": "This is our standard to load simple components for plain javascript projects ",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "jest",
     "compile": "babel lib/components.js > dist/components.js && babel lib/create.js > dist/create.js && babel lib/index.js > dist/index.js && babel lib/instances.js > dist/instances.js && babel lib/observe.js > dist/observe.js && babel lib/register.js > dist/register.js && babel lib/run.js > dist/run.js && babel lib/uuid.js > dist/uuid.js"
