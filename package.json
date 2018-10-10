@@ -4,7 +4,8 @@
   "description": "This is our standard to load simple components for plain javascript projects ",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "compile": "babel lib/components.js > dist/components.js && babel lib/create.js > dist/create.js && babel lib/index.js > dist/index.js && babel lib/instances.js > dist/instances.js && babel lib/observe.js > dist/observe.js && babel lib/register.js > dist/register.js && babel lib/run.js > dist/run.js && babel lib/uuid.js > dist/uuid.js"
   },
   "publishConfig": {
     "registry": "http://repo-npm.int.netcentric.biz/repository/npm-nc/"
@@ -27,7 +28,10 @@
   "author": "Netcentric",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0",
-    "eslint-config-airbnb-base": "^13.1.0"
-  }
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {}
 }
