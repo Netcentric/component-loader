@@ -23,6 +23,27 @@
 
 2 - Run ```npm install --save @nc/component-loader```
 
+### important babel
+
+Please this module is not transpiled so you will have to allow it.
+
+Normally we should exclude node_modules, but this one you should keep like for intance:
+
+```javascript
+
+module.exports = {
+  test: /\.js$/,
+  exclude: /node_modules\/(?!@nc)/,
+  loader: 'babel-loader',
+  options: {
+    presets: '@babel/preset-env'
+  }
+};
+```
+
+The excluding node_modules, except the ones under node_modules/@nc/*
+
+
 
 ### A Regular project setup
 
