@@ -27,10 +27,10 @@
 
 Please this module is not transpiled so you will have to allow it.
 
-Normally we should exclude node_modules, but this one you should keep like for intance:
+Normally we should exclude node_modules, but this one you should keep it, like the example:
 
 ```javascript
-
+// webpack babel-loader config
 module.exports = {
   test: /\.js$/,
   exclude: /node_modules\/(?!@nc)/,
@@ -41,7 +41,7 @@ module.exports = {
 };
 ```
 
-The excluding node_modules, except the ones under node_modules/@nc/*
+Here we are excluding node_modules, except the ones under node_modules/@nc/*
 
 
 
