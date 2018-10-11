@@ -23,6 +23,27 @@
 
 2 - Run ```npm install --save @nc/component-loader```
 
+### important babel
+
+Please this module is not transpiled so you will have to allow it.
+
+Normally we should exclude node_modules, but this one you should keep it, like the example:
+
+```javascript
+// webpack babel-loader config
+module.exports = {
+  test: /\.js$/,
+  exclude: /node_modules\/(?!@nc)/,
+  loader: 'babel-loader',
+  options: {
+    presets: '@babel/preset-env'
+  }
+};
+```
+
+Here we are excluding node_modules, except the ones under node_modules/@nc/*
+
+
 
 ### A Regular project setup
 
@@ -55,6 +76,25 @@ loaderRegister({ text });
 ## API and examples
 
 This version uses standalone functions to allow tree shaking and to only use necessary parts.
+
+
+### adding it to HTML
+
+Adding one component
+
+```
+<div data-nc="Component1"
+     data-nc-params-Component1="{}"></div>
+```
+
+
+Adding more than one component
+
+```
+<div data-nc="Component1,Component2"
+     data-nc-params-Component1="{}"
+     data-nc-params-Component2="{}"></div>
+```
 
 
 ### components
