@@ -61,15 +61,19 @@ This version uses standalone functions to allow tree shaking and to only use nec
 
 Adding one component
 
-```<div data-nc="Component1"
-     data-nc-params-Component1="{}"></div>```
+```
+<div data-nc="Component1"
+     data-nc-params-Component1="{}"></div>
+```
 
 
 Adding more than one component
 
-```<div data-nc="Component1,Component2"
+```
+<div data-nc="Component1,Component2"
      data-nc-params-Component1="{}"
-     data-nc-params-Component2="{}"></div>```
+     data-nc-params-Component2="{}"></div>
+```
 
 
 ### components
