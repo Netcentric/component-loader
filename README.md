@@ -57,6 +57,21 @@ loaderRegister({ text });
 This version uses standalone functions to allow tree shaking and to only use necessary parts.
 
 
+### adding it to HTML
+
+Adding one component
+
+```<div data-nc="Component1"
+     data-nc-params-Component1="{}"></div>```
+
+
+Adding more than one component
+
+```<div data-nc="Component1,Component2"
+     data-nc-params-Component1="{}"
+     data-nc-params-Component2="{}"></div>```
+
+
 ### components
 
 Here is just a constant to store the available constructors (functions or classes) of components.
