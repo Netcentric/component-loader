@@ -1,13 +1,13 @@
 # Component loader ( Version with Functions )
 
 # change log
-### v.0.1.10
-- Same API keept
-- Split funcionalities to be used stand alone 
-- runComponent (splited) for runing one component scan and inicialization
-- scan (splited) for scanning the dom
-- factory (splited) for actually factorying the components
-- domReady (new) for cases where scripts are not defered.
+### v.0.1.10 (NPMNC-98)
+- Same API kept 
+- Split functionalities to be used stand alone 
+- runComponent (splitted) for running one component scan and initialisation
+- scan (splitted) for scanning the DOM
+- factory (splitted) for actually factoring the components
+- domReady (new) for cases where scripts are not deferred.
 
 ## Table of Changes
 
@@ -54,7 +54,7 @@ Here we are excluding node_modules, except the ones under node_modules/@nc/*
 
 
 
-### A single project setup
+### A Regular project setup
 
 #### At your main entry file you should run it
 
@@ -62,12 +62,12 @@ Here we are excluding node_modules, except the ones under node_modules/@nc/*
 import {
   observe,
   run
-  // domReady, for when you have non defered javascript
+  // domReady, for when you have non deferred javascript
 } from '@nc/component-loader';
 
 // do a first run
 run();
-// use domReady when you have a non defered javascript. 
+// use domReady when you have a non deferred javascript. 
 // observe if new components are added to the DOM after that.
 observe();
 
