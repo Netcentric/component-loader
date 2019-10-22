@@ -1,5 +1,14 @@
 # Component loader ( Version with Functions )
 
+# change log
+### v.0.1.10 (NPMNC-98)
+- Same API kept 
+- Split functionalities to be used stand alone 
+- runComponent (splitted) for running one component scan and initialisation
+- scan (splitted) for scanning the DOM
+- factory (splitted) for actually factoring the components
+- domReady (new) for cases where scripts are not deferred.
+
 ## Table of Changes
 
 | Problem                                           | Solution                              |
@@ -51,26 +60,29 @@ Here we are excluding node_modules, except the ones under node_modules/@nc/*
 
 ```javascript
 import {
-  observe as loaderObserve,
-  run as loaderRun,
+  observe,
+  run
+  // domReady, for when you have non deferred javascript
 } from '@nc/component-loader';
 
 // do a first run
-loaderRun();
+run();
+// use domReady when you have a non deferred javascript. 
 // observe if new components are added to the DOM after that.
-loaderObserve();
+observe();
 
 ```
 
 #### at the component `.entry.` file you should register your component
 
 ```javascript
-import { register as loaderRegister } from '@nc/component-loader';
+import { register } from '@nc/component-loader';
 import { text } from './text.component';
 
 // register your component to be loaded
-loaderRegister({ text });
-
+register({ text });
+// if you want to run just this component 
+// runComponent(text.name or 'text');
 ```
 
 ## API and examples
