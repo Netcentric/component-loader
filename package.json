@@ -4,7 +4,7 @@
   "description": "This is our standard to load simple components for plain javascript projects ",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "eslint ./lib"
   },
   "publishConfig": {
     "registry": "http://repo-npm.int.netcentric.biz/repository/npm-nc/"
@@ -27,7 +27,8 @@
   "author": "Netcentric",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0",
-    "eslint-config-airbnb-base": "^13.1.0"
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.18.2"
   }
 }
