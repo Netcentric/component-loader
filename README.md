@@ -1,21 +1,12 @@
-# Component loader ( Version with Functions )
-
-# change log
-### v.0.1.10 (NPMNC-98)
-- Same API kept 
-- Split functionalities to be used stand alone 
-- runComponent (splitted) for running one component scan and initialisation
-- scan (splitted) for scanning the DOM
-- factory (splitted) for actually factoring the components
-- domReady (new) for cases where scripts are not deferred.
+# Component loader
 
 ## Table of Changes
 
 | Problem                                           | Solution                              |
 |---------------------------------------------------|---------------------------------------|
 | components asynchronous, not blocking event loop  | async function                        |
-| singleton vs static class vs function exports     | splited into functions                |
-| Registering sintax                                | ```loaderRegister({ component })```   |
+| singleton vs static class vs function exports     | splitted into functions                |
+| Registering syntax                                | ```loaderRegister({ component })```   |
 | Used named exports vs export default              | Named exports                         |
 | configurable data attribute?                      | function param defaults               |
 | Object for component list vs Set with name inside | Object for component list             |
@@ -28,15 +19,15 @@
 
 ### Installation
 
-1 - Make sure you have your ~/.npmrc file setup (see ["How can I install an NPM-NC package globally for my local user's account?"](https://projects.netcentric.biz/wiki/display/FRONTEND/Netcentric%27s+NPM+Repository+-+NPM-NC) )
+1 - Make sure you have your `.npmrc` file setup (see ["How can I install an NPM-NC package globally for my local user's account?"](https://projects.netcentric.biz/wiki/display/FRONTEND/Netcentric%27s+NPM+Repository+-+NPM-NC) )
 
 2 - Run ```npm install --save @nc/component-loader```
 
-### important babel
+#### important! babel
 
-Please this module is not transpiled so you will have to allow it.
+This module is not transpiled. If your project is excluding `node_modules` you will have to update regex to include this module.
 
-Normally we should exclude node_modules, but this one you should keep it, like the example:
+Eg:
 
 ```javascript
 // webpack babel-loader config
@@ -53,25 +44,27 @@ module.exports = {
 Here we are excluding node_modules, except the ones under node_modules/@nc/*
 
 
+### Usage
 
-### A Regular project setup
-
-#### At your main entry file you should run it
-
+1. Register component:
 ```javascript
-import {
-  observe,
-  run
-  // domReady, for when you have non deferred javascript
-} from '@nc/component-loader';
-
-// do a first run
-run();
-// use domReady when you have a non deferred javascript. 
-// observe if new components are added to the DOM after that.
-observe();
-
+register({ componentName: ComponentClass });
 ```
+2. Initialize component
+```javascript
+runComponent('componentName');
+```
+or initialize all components
+```javascript
+run();
+```
+3. Bind component to DOM
+```html
+<div data-nc="componentName"
+     data-nc-params-componentName="{}"></div>
+```
+
+### Example
 
 #### at the component `.entry.` file you should register your component
 
@@ -81,8 +74,22 @@ import { text } from './text.component';
 
 // register your component to be loaded
 register({ text });
-// if you want to run just this component 
+// if you want to run just this component, eg if you are using http2
 // runComponent(text.name or 'text');
+```
+
+#### At your main entry file you should run all registered components
+
+```javascript
+import {
+  observe,
+  run
+} from '@nc/component-loader';
+
+// Run all registered component - used usually with http1
+run();
+// Optional: Use observe to initialize new components which  are added to the DOM after initial run.
+observe();
 ```
 
 ## API and examples
@@ -108,104 +115,145 @@ Adding more than one component
      data-nc-params-Component2="{}"></div>
 ```
 
+### register
+
+This method will register components constructor in loaderComponents
+You can register individual component, or list
+
+#### Parameters
+
+```
+/**
+ * Constant with a object that contain collection of components classes.
+ * 
+ * @param {object} newComponents - Components collection { name: definition }
+ * @param {number} [level] - level of inheritance
+ */
+  const register = (newComponents, level) => {}
+```
+
+#### Examples
+
+```javascript
+
+import { register } from '@nc/component-loader';
+import { title } from 'components/title';
+import { text } from 'components/text';
+
+// Add 2 components named title, and text
+register({ title, text });
+
+```
+Or you can register several components based on proper named exports
+
+```javascript
+
+import { register } from '@nc/component-loader';
+import * as components from 'components';
+
+// register all components exported as proper named exports on components/index.js
+
+register({ components });
+
+```
+
+Level is used in multilevel inheritance, eg if you have one base project with component HTML, 
+and want to override just JS part in sub project
+
+1. Base project
+
+```javascript
+import { register } from '@nc/component-loader';
+
+class Title {
+  init() {
+    console.log('level 0 Title');
+  }
+}
+
+register({ Title }, 0);
+```
+
+2. Sub project
+
+```javascript
+import { register, components } from '@nc/component-loader';
+
+class Title extends components[0].Title {
+  init() {
+    console.log('level 1 Title');
+  }
+}
+
+register({ Title }, 1);
+```
+
+### run
+
+This will run the loader on previously registered components.
+
+#### Parameters
+
+```
+/**
+ *  Run the loader on a element to get all attributes that corresponds to a component
+ *  @param {HTMLElement} [element] root element
+ *  @param {string} [initAttr] attribut name
+ */
+  const run = (element = window.document, initAttr = 'data-nc') => {}
+```
+
+#### Examples
+
+```javascript
+
+import {
+  register,
+  run
+} from '@nc/component-loader';
+
+// eg components
+import { title } from 'components/title';
+import { text } from 'components/text';
+
+// Add 2 components named title, and text
+register({ title, text });
+// then you run so it will create if any HTMLelement with a default attribute have any component to start
+run();
+
+// Or load components only on a specific element and search a different attribute like `data-components`
+const main = document.querySelector('main');
+run(main, 'data-components');
+```
 
 ### components
 
 Here is just a constant to store the available constructors (functions or classes) of components.
-We store it on its own file so it can be imported into separeted files and witout having to import the other components logic.
+We store it on its own file so it can be imported into separated files and without having to import the other components logic.
 
 If you want to access all components constructors you can just import it in any file like:
 
 ```javascript
 
-import { components as loaderComponents } from @nc/component-loader
+import { components } from '@nc/component-loader';
 
 ```
 
 ### instances
 
 This object will store all instances of components separated by [className][instanceId].
-We store it on its own file so it can be imported into separeted files and witout having to import the other components logic.
+We store it on its own file so it can be imported into separated files and without having to import the other components logic.
 
-If you want to access all the intances of components you can just import it in any file like:
+If you want to access all the instances of components you can just import it in any file like:
 
 ```javascript
 
-import { instances as loaderInstances } from @nc/component-loader;
+import { instances } from '@nc/component-loader';
 
-const howManyTitles = loaderInstances.title.length;
+const howManyTitles = instances.title.length;
 
 // eg of querying title components by uuid
-const getTitleByUUID = (uuid) => loaderInstances.title.filter(instance => instance.el.uuid === uuid);
+const getTitleByUUID = (uuid) => instances.title.filter(instance => instance.el.uuid === uuid);
 const mytitle = getTitleByUUID('a8c405b5-1928-46ed-afa1-5a0a3f4dde6c');
-
-```
-
-### register
-
-This method will register componets constructor in loaderComponents
-You can register individual components
-
-```javascript
-
-import { register as loaderRegister } from @nc/component-loader
-import { title } from 'components/title';
-import { text } from 'components/text';
-
-// Add 2 components named title, and text
-loaderRegister({ title, text });
-
-```
-Or you can register several components based on proper named exports
-
-```javascript
-
-import { register as loaderRegister } from @nc/component-loader
-import * as components from 'components';
-
-// register all components exported as proper named exports on components/index.js
-
-loaderRegister({ components });
-
-```
-
-### run
-
-This will run the loader on previous register components
-
-```javascript
-
-import {
-  register as loaderRegister,
-  run as loaderRun
-} from @nc/component-loader;
-
-// eg components
-import { title } from 'components/title';
-import { text } from 'components/text';
-
-// Add 2 components named title, and text
-loaderRegister({ title, text });
-// then you run so it will create if any HTMLelement with a default attribute have any component to start
-loaderRun();
-
-```
-Or you can register several components based on proper named exports
-
-```javascript
-
-import {
-  register as loaderRegister,
-  run as loaderRun
-} from @nc/component-loader;
-
-// eg components
-import * as components from 'components';
-
-// register all components exported as proper named exports on components/index.js
-loaderRegister({ components });
-// load only on a specific element and search a diferent attribute like `data-component`
-const main = document.querySelector('main');
-loaderRun(main, 'data-component');
 
 ```
