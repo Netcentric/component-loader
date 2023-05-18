@@ -1,6 +1,6 @@
 {
   "name": "@nc/component-loader",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "This is our standard to load simple components for plain javascript projects ",
   "main": "./lib/index.js",
   "scripts": {
