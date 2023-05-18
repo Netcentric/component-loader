@@ -7,7 +7,7 @@
     "test": "eslint ./lib"
   },
   "publishConfig": {
-    "registry": "http://repo-npm.int.netcentric.biz/repository/npm-nc/"
+    "registry": "https://repo.int.netcentric.biz/nexus/content/groups/npm-all/"
   },
   "repository": {
     "type": "git",
