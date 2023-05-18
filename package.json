@@ -7,7 +7,7 @@
     "test": "eslint ./lib"
   },
   "publishConfig": {
-    "registry": "https://repo.int.netcentric.biz/nexus/content/groups/npm-all/"
+    "registry": "https://pkgs.dev.azure.com/henkeldx/dbp/_packaging/henkel-heliux/npm/registry/"
   },
   "repository": {
     "type": "git",
