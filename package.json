@@ -1,14 +1,19 @@
 {
-  "name": "@nc/component-loader",
-  "version": "0.2.8",
-  "description": "This is our standard to load simple components for plain javascript projects ",
-  "main": "./lib/index.js",
-  "scripts": {
-    "test": "eslint ./lib"
+  "name": "@netcentric/component-loader",
+  "version": "1.0.0",
+  "description": "Load components for plain javascript projects",
+  "license": "Apache-2.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@source.int.netcentric.biz:7999/npm-nc/component-loader.git"
+    "url": "https://github.com/netcentric/component-loader"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "eslint ./src"
   },
   "keywords": [
     "Component",
@@ -22,7 +27,6 @@
     "Android >= 5"
   ],
   "author": "Netcentric",
-  "license": "ISC",
   "devDependencies": {
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint": "^6.7.2",

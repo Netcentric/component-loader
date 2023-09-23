@@ -1,4 +1,12 @@
-# Component loader
+# @netcentric/component-loader
+
+Description
+
+[![Version](https://img.shields.io/npm/v/@netcentric/component-loader.svg)](https://npmjs.org/package/@netcentric/component-loader)
+[![Build Status](https://github.com/netcentric/component-loader/workflows/CI/badge.svg?branch=main)](https://github.com/netcentric/component-loader/actions)
+[![CodeQL Analysis](https://github.com/netcentric/component-loader/workflows/CodeQL/badge.svg?branch=main)](https://github.com/netcentric/component-loader/actions)
+[![semver: semantic-release](https://img.shields.io/badge/semver-semantic--release-blue.svg)](https://github.com/semantic-release/semantic-release)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Table of Changes
 
@@ -14,14 +22,9 @@
 | Iteration over nodes instead of components        | Nodes define with components to init  |
 
 
-# how to use it on your project
-
-
 ### Installation
 
-1 - Make sure you have your `.npmrc` file setup (see ["How can I install an NPM-NC package globally for my local user's account?"](https://projects.netcentric.biz/wiki/display/FRONTEND/Netcentric%27s+NPM+Repository+-+NPM-NC) )
-
-2 - Run ```npm install --save @nc/component-loader```
+```npm install @netcentric/component-loader```
 
 #### important! babel
 
@@ -33,7 +36,7 @@ Eg:
 // webpack babel-loader config
 module.exports = {
   test: /\.js$/,
-  exclude: /node_modules\/(?!@nc)/,
+  exclude: /node_modules\/(?!@netcentric)/,
   loader: 'babel-loader',
   options: {
     presets: '@babel/preset-env'
@@ -41,7 +44,7 @@ module.exports = {
 };
 ```
 
-Here we are excluding node_modules, except the ones under node_modules/@nc/*
+Here we are excluding node_modules, except the ones under node_modules/@netcentric/*
 
 
 ### Usage
@@ -69,7 +72,7 @@ run();
 #### at the component `.entry.` file you should register your component
 
 ```javascript
-import { register } from '@nc/component-loader';
+import { register } from '@netcentric/component-loader';
 import { text } from './text.component';
 
 // register your component to be loaded
@@ -84,7 +87,7 @@ register({ text });
 import {
   observe,
   run
-} from '@nc/component-loader';
+} from '@netcentric/component-loader';
 
 // Run all registered component - used usually with http1
 run();
@@ -136,7 +139,7 @@ You can register individual component, or list
 
 ```javascript
 
-import { register } from '@nc/component-loader';
+import { register } from '@netcentric/component-loader';
 import { title } from 'components/title';
 import { text } from 'components/text';
 
@@ -148,7 +151,7 @@ Or you can register several components based on proper named exports
 
 ```javascript
 
-import { register } from '@nc/component-loader';
+import { register } from '@netcentric/component-loader';
 import * as components from 'components';
 
 // register all components exported as proper named exports on components/index.js
@@ -157,13 +160,13 @@ register({ components });
 
 ```
 
-Level is used in multilevel inheritance, eg if you have one base project with component HTML, 
+Level is used in multilevel inheritance, eg if you have one base project with component HTML,
 and want to override just JS part in sub project
 
 1. Base project
 
 ```javascript
-import { register } from '@nc/component-loader';
+import { register } from '@netcentric/component-loader';
 
 class Title {
   init() {
@@ -177,7 +180,7 @@ register({ Title }, 0);
 2. Sub project
 
 ```javascript
-import { register, components } from '@nc/component-loader';
+import { register, components } from '@netcentric/component-loader';
 
 class Title extends components[0].Title {
   init() {
@@ -210,7 +213,7 @@ This will run the loader on previously registered components.
 import {
   register,
   run
-} from '@nc/component-loader';
+} from '@netcentric/component-loader';
 
 // eg components
 import { title } from 'components/title';
@@ -235,20 +238,20 @@ If you want to access all components constructors you can just import it in any 
 
 ```javascript
 
-import { components } from '@nc/component-loader';
+import { components } from '@netcentric/component-loader';
 
 ```
 
 ### instances
 
 This object will store all instances of components separated by [className][instanceId].
-We store it on its own file so it can be imported into separated files and without having to import the other components logic.
+We store it on its own file, so it can be imported into separated files and without having to import the other components logic.
 
 If you want to access all the instances of components you can just import it in any file like:
 
 ```javascript
 
-import { instances } from '@nc/component-loader';
+import { instances } from '@netcentric/component-loader';
 
 const howManyTitles = instances.title.length;
 
@@ -256,4 +259,47 @@ const howManyTitles = instances.title.length;
 const getTitleByUUID = (uuid) => instances.title.filter(instance => instance.el.uuid === uuid);
 const mytitle = getTitleByUUID('a8c405b5-1928-46ed-afa1-5a0a3f4dde6c');
 
+```
+
+### Docs
+- LICENSE
+- docs/CODE_OF_CONDUCT.md
+- docs/CONTRIBUTING.md
+- docs/CHANGELOG.md --> dynamically updated
+
+### Issue template
+- .github/ISSUE_TEMPLATE.md
+
+### PR template
+- .github/PULL_REQUEST_TEMPLATE.md --> automatically closes connected issue
+
+### Workflows
+- CI --> npm ci, test and build
+- CodeQL --> Perform CodeQL Analysis (Security, etc.)
+- Release --> semantic-release:
+  * Creates release notes
+  * Updates CHANGELOG
+  * Updates package.json version
+  * Creates Git tag/release
+  * Publish package to NPM
+- Manual Release --> same as Release, but can be triggered manually in Actions tab
+
+### Release
+- based on Angular Commit Message Conventions in commits -
+  https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit-message-header
+- Commit message format is used to build:
+  * Release notes
+  * Changelog updates
+  * NPM package semver
+
+### Commit message Convention
+
+```
+<type>(<scope>): <short summary>
+│       │             │
+│       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+│       │
+│       └─⫸ Commit Scope (optional): project|based|list
+│
+└─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
