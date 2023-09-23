@@ -4,13 +4,13 @@ import { instances } from './instances';
 import { create } from './create';
 import { uuid } from './uuid';
 
-const sortKeys = list => Object.keys(list).sort((a, b) => b - a);
+const sortKeys = (list) => Object.keys(list).sort((a, b) => b - a);
 const getComponent = (name) => {
   if (components[name]) {
     return components[name];
   }
   // first appearance of component in sorted levels
-  const topLevel = sortKeys(components).find(level => components[level][name]);
+  const topLevel = sortKeys(components).find((level) => components[level][name]);
   return topLevel ? components[topLevel][name] : null;
 };
 
@@ -34,13 +34,14 @@ export const factory = (name, element, initAttr) => {
         component, // Component Class
         name, // Component Name
         element, // Node
-        initAttr, // params to find components
-      ),
+        initAttr // params to find components
+      )
     );
-    return;
+    return null;
   }
   // no component was found
   deferredComponents[name] = deferredComponents[name] || [];
   deferredComponents[name].push({ element, initAttr });
+  // eslint-disable-next-line no-console
   return console.warn(`Deferring initialisation of Component because factory cannot find a class for "${name}"`);
 };

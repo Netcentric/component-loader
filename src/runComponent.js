@@ -7,5 +7,5 @@ import { scan } from './scan';
 
 export const runComponent = (name, element = window.document, initAttr = 'data-nc') =>
   scan(element, `${initAttr}*="${name}"`)
-    .forEach(node => setTimeout(() =>
+    .forEach((node) => setTimeout(() =>
       factory(name, node, initAttr)));

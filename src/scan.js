@@ -1,5 +1,5 @@
 /**
- * Scan elements for the the query returnig all as array
+ * Scan elements for the query returning all as array
  */
 
 export const scan = (element = window.document, initAttr = 'data-nc') => {

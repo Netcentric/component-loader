@@ -13,6 +13,7 @@ export const create = (Component, name, el, initAttr) => {
     const errorTitle = `ERROR (${name} component): parsing '${paramsAttr}'`;
     const errorText = `The following JSON '${params}' is not a valid JSON string`;
     const errorEx = `(i.e. ${paramsAttr}='{ "foo": "bar" }')`;
+    // eslint-disable-next-line no-console
     console.error(errorTitle, `${errorText} ${errorEx}`, el);
     return error;
   }
@@ -21,6 +22,7 @@ export const create = (Component, name, el, initAttr) => {
     const instance = new Component(el, options, name);
     return instance;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`${name}(${el.uuid}) ERROR:`, el, options, error);
     return error;
   }

@@ -3,7 +3,7 @@ import { components } from './components';
 import { deferredComponents } from './deferredComponents';
 
 /**
- * Constant with a object that contain collection of components classes.
+ * Constant with an object that contain collection of components classes.
  *
  * @param {object} newComponents - Components collection { name: definition }
  * @param {number} [level] - level of inheritance, 0,1,2 ...

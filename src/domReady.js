@@ -1,5 +1,5 @@
 import {
-  run,
+  run
 } from './run';
 
 /**
