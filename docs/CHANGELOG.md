@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/netcentric/component-loader/compare/v1.0.0...v1.0.1) (2023-09-24)
+
+
+### Bug Fixes
+
+* remove src from npmignore ([d626b1b](https://github.com/netcentric/component-loader/commit/d626b1bcd4267f53b2474e2e51778cb0b9904976))
+
 # [1.0.0](https://github.com/netcentric/component-loader/compare/v0.2.9...v1.0.0) (2023-09-24)
 
 
