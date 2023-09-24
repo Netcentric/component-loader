@@ -1,3 +1,13 @@
+# [1.0.0](https://github.com/netcentric/component-loader/compare/v0.2.9...v1.0.0) (2023-09-24)
+
+
+* BREAKING CHANGE: Trigger Manual Release ([7a83d3a](https://github.com/netcentric/component-loader/commit/7a83d3a6e262e47b8887b0f4f6e50a3df8d54119))
+
+
+### BREAKING CHANGES
+
+* Forced Manual Release without code changes
+
 ## [0.2.9](https://github.com/netcentric/component-loader/compare/v0.2.8...v0.2.9) (2023-09-24)
 
 
