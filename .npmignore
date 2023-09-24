@@ -16,5 +16,7 @@ yarn.lock
 /temp
 /templates
 /demos
-/src
+.idea
 .github
+.releaserc
+.editorconfig
