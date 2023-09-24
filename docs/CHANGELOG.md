@@ -1,3 +1,10 @@
+## [0.2.9](https://github.com/netcentric/component-loader/compare/v0.2.8...v0.2.9) (2023-09-24)
+
+
+### Bug Fixes
+
+* Initial release with lint updates ([ce9df95](https://github.com/netcentric/component-loader/commit/ce9df95a61762bc65d1a967a8cb3e6418d7d1125))
+
 # Change Log
 
 ## Unreleased
