@@ -59,7 +59,7 @@ jobs:
         run: |
           git commit --allow-empty -m "${{ github.event.inputs.version }}: Trigger Manual Release
 
-          Forced Manual Release without code changes"
+          ${{ github.event.inputs.version }}:Forced Manual Release without code changes"
       - name: Install dependencies
         run: npm ci
       - name: Build Library
