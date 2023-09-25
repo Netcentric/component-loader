@@ -8,25 +8,11 @@ Description
 [![semver: semantic-release](https://img.shields.io/badge/semver-semantic--release-blue.svg)](https://github.com/semantic-release/semantic-release)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Table of Changes
-
-| Problem                                           | Solution                              |
-|---------------------------------------------------|---------------------------------------|
-| components asynchronous, not blocking event loop  | async function                        |
-| singleton vs static class vs function exports     | splitted into functions                |
-| Registering syntax                                | ```loaderRegister({ component })```   |
-| Used named exports vs export default              | Named exports                         |
-| configurable data attribute?                      | function param defaults               |
-| Object for component list vs Set with name inside | Object for component list             |
-| Mutation Observer vs AEM edit Iframe Postmessage  | Mutation Observer                     |
-| Iteration over nodes instead of components        | Nodes define with components to init  |
-
-
-### Installation
+## Installation
 
 ```npm install @netcentric/component-loader```
 
-#### important! babel
+**important!**
 
 This module is not transpiled. If your project is excluding `node_modules` you will have to update regex to include this module.
 
@@ -35,19 +21,16 @@ Eg:
 ```javascript
 // webpack babel-loader config
 module.exports = {
-  test: /\.js$/,
   exclude: /node_modules\/(?!@netcentric)/,
   loader: 'babel-loader',
-  options: {
-    presets: '@babel/preset-env'
-  }
+  ...
 };
 ```
 
 Here we are excluding node_modules, except the ones under node_modules/@netcentric/*
 
 
-### Usage
+## Usage
 
 1. Register component:
 ```javascript
@@ -69,16 +52,16 @@ run();
 
 ### Example
 
-#### at the component `.entry.` file you should register your component
+#### in the component file you should register your component
 
 ```javascript
 import { register } from '@netcentric/component-loader';
-import { text } from './text.component';
 
+class Text {
+  ...
+}
 // register your component to be loaded
-register({ text });
-// if you want to run just this component, eg if you are using http2
-// runComponent(text.name or 'text');
+register({ Text });
 ```
 
 #### At your main entry file you should run all registered components
@@ -89,7 +72,7 @@ import {
   run
 } from '@netcentric/component-loader';
 
-// Run all registered component - used usually with http1
+// Run all registered component
 run();
 // Optional: Use observe to initialize new components which  are added to the DOM after initial run.
 observe();
@@ -259,47 +242,4 @@ const howManyTitles = instances.title.length;
 const getTitleByUUID = (uuid) => instances.title.filter(instance => instance.el.uuid === uuid);
 const mytitle = getTitleByUUID('a8c405b5-1928-46ed-afa1-5a0a3f4dde6c');
 
-```
-
-### Docs
-- LICENSE
-- docs/CODE_OF_CONDUCT.md
-- docs/CONTRIBUTING.md
-- docs/CHANGELOG.md --> dynamically updated
-
-### Issue template
-- .github/ISSUE_TEMPLATE.md
-
-### PR template
-- .github/PULL_REQUEST_TEMPLATE.md --> automatically closes connected issue
-
-### Workflows
-- CI --> npm ci, test and build
-- CodeQL --> Perform CodeQL Analysis (Security, etc.)
-- Release --> semantic-release:
-  * Creates release notes
-  * Updates CHANGELOG
-  * Updates package.json version
-  * Creates Git tag/release
-  * Publish package to NPM
-- Manual Release --> same as Release, but can be triggered manually in Actions tab
-
-### Release
-- based on Angular Commit Message Conventions in commits -
-  https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit-message-header
-- Commit message format is used to build:
-  * Release notes
-  * Changelog updates
-  * NPM package semver
-
-### Commit message Convention
-
-```
-<type>(<scope>): <short summary>
-│       │             │
-│       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
-│       │
-│       └─⫸ Commit Scope (optional): project|based|list
-│
-└─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
