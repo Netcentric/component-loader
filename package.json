@@ -1,6 +1,6 @@
 {
   "name": "@netcentric/component-loader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Load components for plain javascript projects",
   "license": "Apache-2.0",
   "private": false,
