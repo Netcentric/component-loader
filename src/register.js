@@ -1,6 +1,6 @@
-import { factory } from './factory';
 import { components } from './components';
 import { deferredComponents } from './deferredComponents';
+import { factory } from './factory';
 
 /**
  * Constant with an object that contain collection of components classes.
@@ -19,7 +19,7 @@ export const register = (newComponents, level) => {
       components[level][name] = newComponents[name];
     }
     if (deferredComponents[name]) {
-      deferredComponents[name].forEach(({ element, initAttr }) => factory(name, element, initAttr));
+      deferredComponents[name].forEach(({ element, initAttr, lazyAttr }) => factory(name, element, initAttr, lazyAttr));
       delete deferredComponents[name];
     }
   });

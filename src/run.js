@@ -7,7 +7,7 @@ import { scan } from './scan';
  *  @param {string} [initAttr] attribute name
  */
 
-export const run = (element = window.document, initAttr = 'data-nc') =>
+export const run = (element = window.document, initAttr = 'data-nc', lazyAttr = 'data-nc-loading') =>
   scan(element, initAttr).forEach(
     (node) => setTimeout(() => {
       // when we have coral polyfills (forced all browsers at cloud env), it creates elements twice + and move then around.
@@ -17,7 +17,7 @@ export const run = (element = window.document, initAttr = 'data-nc') =>
         // get the component that needs, will load by attribute
         const componentNames = node.getAttribute(initAttr).split(',');
         componentNames.forEach((name) =>
-          factory(name, node, initAttr));
+          factory(name, node, initAttr, lazyAttr));
       }
     })
   );

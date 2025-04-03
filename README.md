@@ -47,7 +47,8 @@ run();
 3. Bind component to DOM
 ```html
 <div data-nc="componentName"
-     data-nc-params-componentName="{}"></div>
+     data-nc-params-componentName="{}"
+     data-nc-loading="lazy"></div>
 ```
 
 ### Example
@@ -101,6 +102,14 @@ Adding more than one component
      data-nc-params-Component2="{}"></div>
 ```
 
+
+Defering component instantiation until it enters the viewport
+
+```
+<div data-nc="Component1"
+     data-nc-loading="lazy"></div>
+```
+
 ### register
 
 This method will register components constructor in loaderComponents
@@ -111,7 +120,7 @@ You can register individual component, or list
 ```
 /**
  * Constant with a object that contain collection of components classes.
- * 
+ *
  * @param {object} newComponents - Components collection { name: definition }
  * @param {number} [level] - level of inheritance
  */
