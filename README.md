@@ -47,8 +47,7 @@ run();
 3. Bind component to DOM
 ```html
 <div data-nc="componentName"
-     data-nc-params-componentName="{}"
-     data-nc-loading="lazy"></div>
+     data-nc-params-componentName="{}"></div>
 ```
 
 ### Example
