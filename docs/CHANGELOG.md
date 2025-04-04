@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/netcentric/component-loader/compare/v1.0.2...v1.1.0) (2025-04-04)
+
+
+### Features
+
+* **project:** Defer creation of the component instance until it is visible in the viewport ([f10f2cb](https://github.com/netcentric/component-loader/commit/f10f2cb09cdcb9840ce7e9e06b02b1917195e328))
+
 ## [1.0.2](https://github.com/netcentric/component-loader/compare/v1.0.1...v1.0.2) (2024-12-10)
 
 
