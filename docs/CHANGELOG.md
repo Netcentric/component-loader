@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/netcentric/component-loader/compare/v1.1.0...v1.1.1) (2025-04-04)
+
+
+### Bug Fixes
+
+* Trigger Manual Release ([3ea88e4](https://github.com/netcentric/component-loader/commit/3ea88e4672787cc4c4df7da248f756b72b2f5f0c))
+
 # [1.1.0](https://github.com/netcentric/component-loader/compare/v1.0.2...v1.1.0) (2025-04-04)
 
 
