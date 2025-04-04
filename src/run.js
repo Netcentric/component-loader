@@ -16,8 +16,24 @@ export const run = (element = window.document, initAttr = 'data-nc', lazyAttr = 
         node.initialized = true;
         // get the component that needs, will load by attribute
         const componentNames = node.getAttribute(initAttr).split(',');
-        componentNames.forEach((name) =>
-          factory(name, node, initAttr, lazyAttr));
+        componentNames.forEach((name) => {
+          const isLazy = node.getAttribute(lazyAttr) === 'lazy';
+          if (isLazy) {
+            const observerSettings = { rootMargin: '50px 0px', threshold: 0.01 };
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.intersectionRatio > 0) {
+                  observer.unobserve(node);
+                  factory(name, node, initAttr);
+                }
+              });
+            }, observerSettings);
+
+            observer.observe(node);
+            return null;
+          }
+          return factory(name, node, initAttr);
+        });
       }
     })
   );
